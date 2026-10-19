@@ -1,0 +1,29 @@
+{
+  "rows": 244828,
+  "columns_raw": 8,
+  "date_min": "2023-11-02 09:22:02",
+  "date_max": "2024-03-24 14:16:47",
+  "hourly_flag_count": 140937,
+  "hourly_with_midpoint": 102422,
+  "fixed_budget_count": 103891,
+  "unique_countries_including_unknown": 213,
+  "remote_keyword_count": 5694,
+  "median_hourly_midpoint": 22.5,
+  "median_fixed_budget": 100.0,
+  "monthly_counts": {
+    "2023-11": 1,
+    "2023-12": 10,
+    "2024-01": 96,
+    "2024-02": 101887,
+    "2024-03": 142834
+  },
+  "missing_percent": {
+    "title": 0.0,
+    "published_date": 0.0,
+    "is_hourly": 0.0,
+    "hourly_low": 58.17,
+    "hourly_high": 59.66,
+    "budget": 57.57,
+    "country": 0.0
+  }
+}

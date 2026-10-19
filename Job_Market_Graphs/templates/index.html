@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Job Market Analysis Dashboard</title>
+<style>
+body{font-family:Arial,sans-serif;margin:0;background:#f4f7fb;color:#172033}
+header{background:#183153;color:white;padding:28px 6%}header h1{margin:0 0 8px;font-size:28px}header p{margin:0;color:#d8e6f5}
+main{max-width:1100px;margin:26px auto;padding:0 18px}.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px}
+.metric,.chart,.tablebox{background:white;border-radius:12px;padding:18px;box-shadow:0 3px 12px #15263b12}
+.metric small{color:#68778b}.metric h2{margin:8px 0 0}.charts{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px;margin-top:18px}
+.chart img{width:100%;height:auto;display:block}.chart h3{margin-top:0}table{width:100%;border-collapse:collapse}td,th{text-align:left;padding:10px;border-bottom:1px solid #e8edf3}.muted{color:#65748b;font-size:13px}
+</style>
+</head>
+<body>
+<header><h1>Job Market Analysis Dashboard</h1><p>Job title demand, salary distribution, posting trends and locations.</p></header>
+<main>
+<section class="metrics">
+<div class="metric"><small>Dataset rows</small><h2>{{ metrics.rows }}</h2></div>
+<div class="metric"><small>Dataset columns</small><h2>{{ metrics.columns }}</h2></div>
+<div class="metric"><small>Data source</small><p>{{ metrics.data_source }}</p></div>
+</section>
+<section class="charts">
+{% for chart in charts %}
+<article class="chart"><h3>{{ chart.title }}</h3><img src="{{ url_for('static', filename='graphs/' + chart.filename) }}" alt="{{ chart.title }}"></article>
+{% else %}
+<article class="chart"><h3>No charts generated yet</h3><p>Run <code>python src/analysis_graphs.py</code> first.</p></article>
+{% endfor %}
+</section>
+{% if top_titles %}
+<section class="tablebox" style="margin-top:18px"><h2>Most common job titles</h2>
+<table><thead><tr><th>Job title</th><th>Postings</th></tr></thead><tbody>
+{% for item in top_titles %}<tr><td>{{ item.title }}</td><td>{{ "{:,}".format(item.postings) }}</td></tr>{% endfor %}
+</tbody></table></section>
+{% endif %}
+<p class="muted">Charts are generated only when matching columns exist in the CSV. Salary graph uses numeric salary values only.</p>
+</main>
+</body></html>
